@@ -39,7 +39,7 @@ export default function AboutPage() {
           We list verified salons — so you can explore options by state and city, compare contact details and ratings, and make informed decisions. Our listings are sourced from public information and verified where possible; we encourage you to confirm licenses and credentials with your state or provincial cosmetology or barbering board and to visit salons in person when possible.
         </p>
         <p>
-          This site is for informational purposes only. We do not endorse any specific facility. Always verify licensing, inspections, and accreditation with the appropriate regulatory body in your area.
+          This site is for informational purposes only. We do not endorse any specific salon. Always verify licensing, inspections, and accreditation with the appropriate regulatory body in your area.
         </p>
         <p>
           Salon owners can learn about featured and premium listings on our{" "}

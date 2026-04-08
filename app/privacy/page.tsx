@@ -43,7 +43,7 @@ export default function PrivacyPage() {
 
           <h2 className="text-lg font-semibold text-navy">2. Information We Collect</h2>
           <p>
-            We may collect information that you provide directly, such as when you contact us, submit a form, or sign up for a featured listing. This may include your name, email address, phone number, facility or business details, and any message content. We also automatically collect certain technical information when you visit our site, such as your IP address, browser type, device information, and pages visited, which may be collected through cookies or similar technologies.
+            We may collect information that you provide directly, such as when you contact us, submit a form, or sign up for a featured listing. This may include your name, email address, phone number, salon or business details, and any message content. We also automatically collect certain technical information when you visit our site, such as your IP address, browser type, device information, and pages visited, which may be collected through cookies or similar technologies.
           </p>
 
           <h2 className="text-lg font-semibold text-navy">3. How We Use Your Information</h2>
