@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf7f4;
-  --foreground: #3d2b1f;
+  --background: #faf6f4;
+  --foreground: #4a3728;
 }
 
 @theme inline {
@@ -10,21 +10,21 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Headings / body ink + primary rose gold + champagne accent */
-  --color-navy: #3d2b1f;
-  --color-navy-soft: #524038;
-  --color-teal: #c4956a;
-  --color-teal-soft: #a67b52;
-  --color-gold: #e8d5b7;
-  --color-gold-soft: #c4956a;
+  /* Primary = champagne accent; headings / ink = warm brown */
+  --color-navy: #4a3728;
+  --color-navy-soft: #5c4838;
+  --color-teal: #d4af7a;
+  --color-teal-soft: #c49e63;
+  --color-gold: #d4af7a;
+  --color-gold-soft: #b8935a;
 
   --color-surface: #ffffff;
-  --color-surface-muted: #faf7f4;
+  --color-surface-muted: #faf6f4;
 
-  /* Brand tokens (rose gold → champagne gradient + text on gradient) */
-  --color-brand-ink: #3d2b1f;
-  --color-brand-blush: #f0e4d8;
-  --color-brand-champagne: #e8d5b7;
+  /* Brand tokens (blush / champagne gradient + text on gradient) */
+  --color-brand-ink: #4a3728;
+  --color-brand-blush: #f2cccd;
+  --color-brand-champagne: #d4af7a;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -32,8 +32,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #faf7f4;
-    --foreground: #3d2b1f;
+    --background: #faf6f4;
+    --foreground: #4a3728;
   }
 }
 
@@ -42,7 +42,7 @@ body {
   color: var(--foreground);
 }
 
-/* Hero + header: rose gold → champagne (135deg) */
+/* Hero + header: blush → champagne (135deg) */
 .bg-brand-gradient {
-  background-image: linear-gradient(135deg, #c4956a 0%, #e8d5b7 100%);
+  background-image: linear-gradient(135deg, #f2cccd 0%, #d4af7a 100%);
 }

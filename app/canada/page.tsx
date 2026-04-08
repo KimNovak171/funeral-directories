@@ -57,7 +57,7 @@ export default async function CanadaLandingPage() {
             </p>
           </div>
 
-          <div className="w-full rounded-2xl border-2 border-teal/35 bg-surface p-6 shadow-xl shadow-navy/15 ring-1 ring-gold/40">
+          <div className="w-full rounded-2xl border-2 border-teal/40 bg-surface p-6 shadow-xl shadow-navy/20 ring-1 ring-teal/30">
             <h2 className="text-xl font-semibold text-foreground">
               Choose a province
             </h2>

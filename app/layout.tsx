@@ -128,7 +128,7 @@ export default async function RootLayout({
           <main className="flex-1">{children}</main>
 
           <section
-            className="w-full border-t-[3px] border-gold/50 bg-surface px-4 py-5 text-foreground/80 sm:px-6 lg:px-8"
+            className="w-full border-t-[3px] border-teal bg-surface px-4 py-5 text-foreground/80 sm:px-6 lg:px-8"
             aria-label="Full state and city directory"
           >
             <div className="mx-auto flex max-w-6xl flex-col gap-4">
@@ -162,7 +162,7 @@ export default async function RootLayout({
                 ))}
                 {canadaDirectory.length > 0 && (
                   <>
-                    <div className="space-y-2 border-t border-gold/35 pt-5">
+                    <div className="space-y-2 border-t border-teal/10 pt-5">
                       <Link
                         href="/canada"
                         className="text-sm font-semibold text-teal hover:text-teal-soft"
@@ -197,7 +197,7 @@ export default async function RootLayout({
             </div>
           </section>
 
-          <footer className="w-full border-t border-gold/40 bg-surface">
+          <footer className="w-full border-t border-teal/10 bg-surface">
             <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5 text-xs text-foreground/80 sm:px-6 lg:px-8">
               <p>
                 © {new Date().getFullYear()} NailSalonDirectories.com. For
