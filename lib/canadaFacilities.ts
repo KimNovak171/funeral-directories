@@ -3,16 +3,16 @@ import fs from "fs";
 import path from "path";
 
 /**
- * All provinces & territories that may have `data/{slug}_facilities.json`.
- * `discoverCanadaProvinceSlugsFromData()` finds which of these files exist and
- * loads each in one batch (`readFileSync` + try/catch → [] per file).
+ * All 13 Canadian provinces & territories are enumerated in `ALL_CANADA_PROVINCE_SLUGS`.
+ * `discoverCanadaProvinceSlugsFromData()` finds which `data/{slug}_facilities.json` files exist
+ * and loads each in one batch (`readFileSync` + try/catch → [] per file).
+ *
  * Maps URLs (CRITICAL):
- * - With non-empty `place_id`: `https://www.google.com/maps/place/?q=place_id:{place_id}`
- *   (full `q` value is URI-encoded).
+ * - With non-empty `place_id`: `https://www.google.com/maps/place/?q=` + URI-encoded `place_id:{place_id}`.
  * - If `place_id` is missing or empty: `https://www.google.com/maps/search/?api=1&query={encoded_address}`.
  *
- * All 13 province/territory slugs below are loaded from `data/{slug}_facilities.json` when present
- * (`discoverCanadaProvinceSlugsFromData` + `readFileSync` + try/catch → [] per file).
+ * Homepage and `/canada` use `getCanadaNationwideStats()` / `getCanadaDirectoryIndex()` (derived from
+ * `PROVINCE_DATA` at module load).
  */
 const ALL_CANADA_PROVINCE_SLUGS = [
   "alberta",
