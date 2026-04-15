@@ -4,35 +4,32 @@ import { FacilityCard } from "@/components/FacilityCard";
 import { getCanadaDirectoryIndex } from "@/lib/canadaFacilities";
 import { getDirectoryIndex, getStateSummary, getGlobalStats } from "@/lib/stateFacilities";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const stats = getGlobalStats();
-  const total = stats.totalFacilities.toLocaleString();
-  const title = `Funeral Home Directory USA & Canada | ${total} verified funeral homes`;
-  const description = `Browse ${total} verified funeral homes across the United States and Canada — all rated 3 stars or higher on Google Maps.`;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: "/",
-    },
-    openGraph: {
-      title,
-      description,
-      url: "/",
-      siteName: "FuneralDirectories.com",
-      type: "website",
-      images: [
-        {
-          url: "/og-image.svg",
-          width: 1200,
-          height: 630,
-          alt: "FuneralDirectories.com homepage preview",
-        },
-      ],
-    },
-  };
-}
+export const metadata: Metadata = {
+  title:
+    "Funeral Home Directory USA & Canada | Verified Funeral Homes & Cremation Services",
+  description:
+    "Browse verified funeral homes across the US and Canada. Funeral homes, mortuaries, cremation providers and memorial chapels — all rated 3 stars or higher on Google Maps.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title:
+      "Funeral Home Directory USA & Canada | Verified Funeral Homes & Cremation Services",
+    description:
+      "Browse verified funeral homes across the US and Canada. Funeral homes, mortuaries, cremation providers and memorial chapels — all rated 3 stars or higher on Google Maps.",
+    url: "/",
+    siteName: "FuneralDirectories.com",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "FuneralDirectories.com homepage preview",
+      },
+    ],
+  },
+};
 
 export default async function Home() {
   const [usDirectory, canadaDirectory] = await Promise.all([
@@ -40,7 +37,7 @@ export default async function Home() {
     getCanadaDirectoryIndex(),
   ]);
   const usStatesSorted = [...usDirectory].sort((a, b) =>
-    a.stateName.localeCompare(b.stateName, "en", { sensitivity: "base" }),
+    a.stateName.localeCompare(b.stateName),
   );
   const stateSummaries = await Promise.all(
     usDirectory.map((s) => getStateSummary(s.stateSlug)),
@@ -61,69 +58,74 @@ export default async function Home() {
   };
 
   return (
-    <div className="bg-surface-muted text-foreground">
+    <div className="bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <section className="bg-surface">
+      <section className="bg-gradient-to-b from-navy via-navy-soft to-background">
         <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
-          <div className="flex flex-col gap-6">
-            <div className="space-y-6 rounded-2xl bg-navy px-6 py-8 text-white shadow-sm sm:px-8 sm:py-10">
-              <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-white/90 backdrop-blur-sm">
-                Funeral Home Directories
-              </p>
-              <h1 className="text-balance text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
-                Find Trusted Funeral Homes — US States &amp; Canadian Provinces
-              </h1>
-              <p className="max-w-2xl text-balance text-sm sm:text-base text-white/90">
-                Verified funeral homes, mortuaries, and cremation providers across the United States and Canada—browse by
-                state or province, then by city. Every listing rated 3★ or higher
-                on Google Maps.
-              </p>
-            </div>
-
-            <section
-              aria-label="Directory statistics"
-              className="w-full rounded-2xl border border-teal/30 bg-surface-muted p-5 shadow-sm ring-1 ring-teal/20 sm:p-6"
-            >
-              <div className="mx-auto grid w-full max-w-2xl gap-4 sm:grid-cols-2 sm:gap-6">
-                <div className="rounded-xl border border-teal/30 bg-surface p-4 text-center shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-                    Total facilities
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold tabular-nums text-navy sm:text-3xl">
-                    {globalStats.totalFacilities.toLocaleString()}
-                  </p>
-                  <p className="mt-1 text-[11px] font-medium text-navy/70">
-                    US and Canada combined
-                  </p>
-                </div>
-                <div className="rounded-xl border border-teal/30 bg-surface p-4 text-center shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-                    Total cities
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold tabular-nums text-navy sm:text-3xl">
-                    {globalStats.totalCities.toLocaleString()}
-                  </p>
-                  <p className="mt-1 text-[11px] font-medium text-navy/70">
-                    US and Canada combined
-                  </p>
-                </div>
-              </div>
-            </section>
+          <div className="space-y-6 text-surface">
+            <p className="inline-flex rounded-full bg-navy-soft/80 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-gold-soft ring-1 ring-gold-soft/40">
+              Funeral Home Directories
+            </p>
+            <h1 className="text-balance text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
+              Find Trusted Funeral Homes — State by State
+            </h1>
+            <p className="max-w-2xl text-balance text-sm sm:text-base text-surface/80">
+              Verified funeral homes, mortuaries, and cremation providers
+              across the US and Canada. Every listing rated 3★ or higher
+              on Google Maps.
+            </p>
           </div>
 
-          <div className="w-full rounded-2xl border-2 border-teal/40 bg-surface p-6 shadow-xl shadow-navy/20 ring-1 ring-teal/30">
-            <h2 className="text-xl font-semibold text-foreground">
+          <section className="w-full border-y-2 border-teal/30 bg-teal/10">
+            <div className="grid max-w-6xl gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Verified Funeral Homes
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">
+                  {globalStats.totalFacilities.toLocaleString()}
+                </p>
+              </div>
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Cities Covered
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">
+                  {globalStats.totalCities.toLocaleString()}
+                </p>
+              </div>
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Average Rating
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">
+                  {globalStats.averageRating != null
+                    ? `${globalStats.averageRating}★`
+                    : "—"}
+                </p>
+              </div>
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Quality Standard
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">3★ Minimum</p>
+              </div>
+            </div>
+          </section>
+
+          <div className="w-full rounded-2xl border-2 border-gold/40 bg-navy-soft/95 p-6 shadow-xl shadow-navy/20 ring-1 ring-gold/30">
+            <h2 className="text-xl font-semibold text-white">
               Start with a state directory
             </h2>
-            <p className="mt-2 text-sm text-foreground/90">
+            <p className="mt-2 text-sm text-white/90">
               Browse verified funeral homes by state, then drill down by
-              city to compare services and contact details.
+              city to compare options and contact details.
             </p>
 
-            <p className="mt-2 text-sm font-medium text-foreground">
+            <p className="mt-2 text-sm font-medium text-white">
               {usStatesSorted.map((s) => s.stateName).join(" • ")}
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -131,7 +133,7 @@ export default async function Home() {
                 <Link
                   key={state.stateSlug}
                   href={`/${state.stateSlug}`}
-                  className="rounded-xl border-2 border-gold bg-surface-muted px-5 py-4 text-left text-navy transition hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="rounded-xl border-2 border-gold bg-navy px-5 py-4 text-left text-white transition hover:bg-[#21456d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 >
                   <p className="text-lg font-semibold">{state.stateName}</p>
                   <p className="mt-1 text-sm text-gold-soft">
@@ -141,39 +143,37 @@ export default async function Home() {
               ))}
             </div>
 
-            <p className="mt-4 text-sm font-medium text-foreground">
-              Each state has its own dedicated directory — specific
-              funeral homes, specific cities, built for that state only.
+            <p className="mt-4 text-sm font-medium text-white">
+              Each state has its own dedicated directory — specific funeral
+              homes, specific cities, built for that state only.
             </p>
           </div>
         </div>
       </section>
 
-      {canadaDirectory.length > 0 && (
-        <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold text-navy">
-            Canadian Funeral Home Directories
-          </h2>
-          <p className="mt-2 text-sm text-foreground/70">
-            Browse verified funeral homes by Canadian province. Same
-            directory experience — province by province, then by city.
-          </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {canadaDirectory.map((item) => (
-              <Link
-                key={item.provinceSlug}
-                href={`/canada/${item.provinceSlug}`}
-                className="rounded-xl border-2 border-gold bg-surface px-5 py-4 text-left text-navy transition hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                <p className="text-lg font-semibold">{item.provinceName}</p>
-                <p className="mt-1 text-sm text-gold-soft">
-                  {item.provinceName} — {item.totalFacilities.toLocaleString()} funeral homes
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-semibold text-navy">
+          Canadian Funeral Home Directories
+        </h2>
+        <p className="mt-2 text-sm text-slate-600">
+          Browse verified funeral homes by Canadian province. Same
+          directory experience — province by province, then by city.
+        </p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {canadaDirectory.map((item) => (
+            <Link
+              key={item.provinceSlug}
+              href={`/canada/${item.provinceSlug}`}
+              className="rounded-xl border-2 border-gold bg-navy px-5 py-4 text-left text-white transition hover:bg-[#21456d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+            >
+              <p className="text-lg font-semibold">{item.provinceName}</p>
+              <p className="mt-1 text-sm text-gold-soft">
+                {item.provinceName} — {item.totalFacilities.toLocaleString()} funeral homes
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {(() => {
         const allFeatured = stateSummaries
@@ -182,13 +182,13 @@ export default async function Home() {
           .slice(0, 6);
         if (allFeatured.length === 0) return null;
         return (
-          <section className="mx-auto max-w-6xl rounded-2xl border-2 border-teal/20 bg-surface px-4 py-10 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-semibold text-foreground">
-              Featured funeral homes
+          <section className="mx-auto max-w-6xl rounded-2xl border-2 border-teal/20 bg-teal/5 px-4 py-10 sm:px-6 lg:px-8">
+            <h2 className="text-xl font-semibold text-navy">
+              Featured Funeral Homes
             </h2>
-            <p className="mt-1 text-sm text-foreground/70">
-              Selected funeral homes across our directories — verified listings for
-              families comparing mortuaries, crematories, and chapels.
+            <p className="mt-1 text-sm text-slate-600">
+              Selected funeral homes across our directories — verified
+              listings for families comparing local providers.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {allFeatured.map((facility) => (
@@ -199,13 +199,13 @@ export default async function Home() {
         );
       })()}
 
-      <p className="mx-auto max-w-2xl rounded-lg border-2 border-teal/40 bg-surface px-4 py-3 text-center text-sm text-foreground/85">
+      <p className="mx-auto max-w-2xl rounded-lg border-2 border-teal/40 bg-teal/10 px-4 py-3 text-center text-sm text-slate-700">
         Funeral home owners: Get featured at the top of your city listing.{" "}
         <Link
           href="/advertise"
           className="font-medium text-teal underline underline-offset-2 hover:text-teal-soft"
         >
-          Learn about featured funeral home placement
+          Learn about premium placement
         </Link>{" "}
         or contact{" "}
         <a
@@ -217,9 +217,9 @@ export default async function Home() {
         .
       </p>
 
-      <section className="bg-surface">
+      <section className="bg-navy/5">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold text-foreground border-b-2 border-teal/50 pb-2 inline-block">
+          <h2 className="text-2xl font-semibold text-navy border-b-2 border-teal/50 pb-2 inline-block">
             How It Works
           </h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -227,23 +227,23 @@ export default async function Home() {
               <p className="text-2xl" aria-hidden="true">
                 1️⃣
               </p>
-              <h3 className="mt-3 text-lg font-semibold text-foreground">
+              <h3 className="mt-3 text-lg font-semibold text-navy">
                 Choose your state
               </h3>
-              <p className="mt-2 text-sm text-foreground/70">
-                Start with Florida or California to access complete state
-                directories.
+              <p className="mt-2 text-sm text-slate-600">
+                Start with any state to access the complete funeral home
+                directory for that area.
               </p>
             </div>
             <div className="rounded-xl border-l-4 border-teal border border-surface-muted bg-surface p-5 shadow-sm">
               <p className="text-2xl" aria-hidden="true">
                 2️⃣
               </p>
-              <h3 className="mt-3 text-lg font-semibold text-foreground">
+              <h3 className="mt-3 text-lg font-semibold text-navy">
                 Browse by city
               </h3>
-              <p className="mt-2 text-sm text-foreground/70">
-                Compare local options by city with ratings, services,
+              <p className="mt-2 text-sm text-slate-600">
+                Compare local funeral homes by city with ratings, services,
                 and contact details.
               </p>
             </div>
@@ -251,68 +251,69 @@ export default async function Home() {
               <p className="text-2xl" aria-hidden="true">
                 3️⃣
               </p>
-              <h3 className="mt-3 text-lg font-semibold text-foreground">
-                Contact providers directly
+              <h3 className="mt-3 text-lg font-semibold text-navy">
+                Contact directly
               </h3>
-              <p className="mt-2 text-sm text-foreground/70">
+              <p className="mt-2 text-sm text-slate-600">
                 Use website and maps links to verify details and contact
-                funeral homes.
+                funeral homes directly.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-surface border-y border-navy/10">
+      <section className="bg-navy/5 border-y border-navy/10">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold text-foreground border-b-2 border-teal/50 pb-2 inline-block">
+          <h2 className="text-2xl font-semibold text-navy border-b-2 border-teal/50 pb-2 inline-block">
             Why Trust Us
           </h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <article className="rounded-xl border-l-4 border-navy border border-surface-muted bg-surface p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-lg font-semibold text-navy">
                 Google Verified Data
               </h3>
-              <p className="mt-2 text-sm text-foreground/70">
-                All listings sourced from Google Maps with real ratings and
-                reviews.
+              <p className="mt-2 text-sm text-slate-600">
+                All funeral homes sourced from Google Maps with real
+                ratings and reviews.
               </p>
             </article>
             <article className="rounded-xl border-l-4 border-navy border border-surface-muted bg-surface p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-lg font-semibold text-navy">
                 Quality Filtered
               </h3>
-              <p className="mt-2 text-sm text-foreground/70">
-                Minimum 3-star rating, irrelevant businesses removed.
+              <p className="mt-2 text-sm text-slate-600">
+                Minimum 3-star rating and irrelevant businesses removed
+                from every listing.
               </p>
             </article>
             <article className="rounded-xl border-l-4 border-navy border border-surface-muted bg-surface p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-lg font-semibold text-navy">
                 Always Free to Browse
               </h3>
-              <p className="mt-2 text-sm text-foreground/70">
+              <p className="mt-2 text-sm text-slate-600">
                 No signup required, no spam, just helpful information for
-                anyone planning a funeral or memorial service.
+                families.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section className="bg-surface">
+      <section className="bg-navy">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-gold/50 bg-surface p-6 text-foreground ring-1 ring-gold/30">
-            <h2 className="text-2xl font-semibold text-foreground">
+          <div className="rounded-2xl border border-gold/50 bg-navy-soft/60 p-6 text-surface ring-1 ring-gold/30">
+            <h2 className="text-2xl font-semibold text-gold-soft">
               Are You a Funeral Home Owner?
             </h2>
-            <p className="mt-3 max-w-3xl text-sm text-foreground/90">
-              Get your funeral home seen by families actively searching for local
-              mortuaries, crematories, and memorial chapels in your city. Featured listings available.
+            <p className="mt-3 max-w-3xl text-sm text-surface/90">
+              Get your funeral home seen by families actively searching for
+              services in your city. Featured and premium listings available.
             </p>
             <div className="mt-5">
               <Link
                 href="/advertise"
-                className="inline-flex items-center justify-center rounded-full border border-navy/15 bg-navy px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow-sm transition hover:bg-navy-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex items-center justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-navy shadow-sm transition hover:bg-gold-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
               >
                 Learn About Featured Listings
               </Link>
