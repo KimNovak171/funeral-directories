@@ -60,15 +60,15 @@ export default async function RootLayout({
         {/* Google tag (gtag.js) */}
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-ZGPCWTMP7F"
+          src="https://www.googletagmanager.com/gtag/js?id=G-E8PC7Q3FTQ"
         />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-ZGPCWTMP7F');
+              gtag("js", new Date());
+              gtag("config", "G-E8PC7Q3FTQ");
             `,
           }}
         />
@@ -82,12 +82,12 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="flex min-h-screen flex-col bg-surface-muted text-foreground">
-          <header className="bg-brand-gradient w-full border-b-[3px] border-brand-champagne/50 text-brand-ink">
+          <header className="bg-navy w-full border-b-[3px] border-teal/50 text-white">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
               <div className="flex items-center gap-6">
                 <Link
                   href="/"
-                  className="text-[11px] font-bold tracking-[0.28em] sm:text-xs text-brand-ink transition-colors hover:opacity-80"
+                  className="text-[11px] font-bold tracking-[0.28em] sm:text-xs text-white transition-colors hover:text-white/90"
                   aria-label="FuneralDirectories.com – go to homepage"
                 >
                   FuneralDirectories.com
@@ -95,31 +95,31 @@ export default async function RootLayout({
                 <nav className="flex items-center gap-4" aria-label="Main navigation">
                   <Link
                     href="/"
-                    className="text-xs font-medium text-brand-ink/90 transition-colors hover:text-brand-ink"
+                    className="text-xs font-medium text-white/90 transition-colors hover:text-white"
                   >
                     USA
                   </Link>
                   <Link
                     href="/canada"
-                    className="text-xs font-medium text-brand-ink/90 transition-colors hover:text-brand-ink"
+                    className="text-xs font-medium text-white/90 transition-colors hover:text-white"
                   >
                     Canada
                   </Link>
                   <Link
                     href="/contact"
-                    className="text-xs font-medium text-brand-ink/90 transition-colors hover:text-brand-ink"
+                    className="text-xs font-medium text-white/90 transition-colors hover:text-white"
                   >
                     Contact
                   </Link>
                   <Link
                     href="/advertise"
-                    className="inline-flex items-center rounded-full border border-brand-ink/20 bg-white/45 px-4 py-2 text-xs font-semibold text-brand-ink shadow-sm backdrop-blur-sm transition hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-champagne focus-visible:ring-offset-2 focus-visible:ring-offset-surface-muted"
+                    className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-sm transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
                   >
                     Advertise
                   </Link>
                 </nav>
               </div>
-              <p className="ml-4 hidden max-w-xs text-right text-xs text-brand-ink/85 sm:block">
+              <p className="ml-4 hidden max-w-xs text-right text-xs text-white/90 sm:block">
                 Trusted funeral home directory for families comparing local providers.
               </p>
             </div>
