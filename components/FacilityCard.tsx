@@ -171,7 +171,7 @@ export function FacilityCard({ facility }: FacilityCardProps) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "NailSalon",
+    "@type": "FuneralHome",
     name,
     telephone: normalizePhoneDisplay(phone ?? ""),
     ...(websiteUrl && { url: websiteUrl }),

@@ -9,8 +9,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const stats = getCanadaNationwideStats();
   const total = stats.totalFacilities.toLocaleString();
   const provinces = stats.provinceCount.toLocaleString();
-  const title = `Nail Salons in Canada | ${total} verified listings | Nail Salon Directories`;
-  const description = `Browse ${total} verified nail salons across ${provinces} provinces and territories—maps, contact info, and Google ratings. Every listing rated 3 stars or higher on Google Maps.`;
+  const title = `Funeral Homes in Canada | ${total} verified listings | Funeral Home Directories`;
+  const description = `Browse ${total} verified funeral homes across ${provinces} provinces and territories—maps, contact info, and Google ratings. Every listing rated 3 stars or higher on Google Maps.`;
 
   return {
     title,
@@ -22,14 +22,14 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: "/canada",
-      siteName: "NailSalonDirectories.com",
+      siteName: "FuneralDirectories.com",
       type: "website",
       images: [
         {
           url: "/og-image.svg",
           width: 1200,
           height: 630,
-          alt: "Canada nail salon directory preview",
+          alt: "Canada funeral home directory preview",
         },
       ],
     },
@@ -38,7 +38,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function CanadaLandingPage() {
   const directory = await getCanadaDirectoryIndex();
-  const caNationwide = getCanadaNationwideStats();
 
   return (
     <div className="bg-surface-muted text-foreground">
@@ -46,13 +45,13 @@ export default async function CanadaLandingPage() {
         <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
           <div className="space-y-6 rounded-2xl bg-brand-gradient px-6 py-8 text-brand-ink shadow-sm sm:px-8 sm:py-10">
             <p className="inline-flex rounded-full border border-brand-ink/20 bg-white/35 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] backdrop-blur-sm">
-              Canadian Nail Salon Directories
+              Canadian Funeral Home Directories
             </p>
             <h1 className="text-balance text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
-              Nail Salons in Canada — Province by Province
+              Funeral Homes in Canada — Province by Province
             </h1>
             <p className="max-w-2xl text-balance text-sm sm:text-base text-brand-ink/85">
-              Verified nail salons across provinces and territories.
+              Verified funeral homes across provinces and territories.
               Every listing rated 3★ or higher on Google Maps.
             </p>
           </div>
@@ -62,7 +61,7 @@ export default async function CanadaLandingPage() {
               Choose a province
             </h2>
             <p className="mt-2 text-sm text-foreground/90">
-              Browse verified salons by province, then drill down
+              Browse verified funeral homes by province, then drill down
               by city to compare services and contact details.
             </p>
             <p className="mt-2 text-sm font-medium text-foreground">
@@ -77,58 +76,16 @@ export default async function CanadaLandingPage() {
                 >
                   <p className="text-lg font-semibold">{item.provinceName}</p>
                   <p className="mt-1 text-sm text-gold-soft">
-                    {item.provinceName} — {item.totalFacilities.toLocaleString()} salons
+                    {item.provinceName} — {item.totalFacilities.toLocaleString()} funeral homes
                   </p>
                 </Link>
               ))}
             </div>
             <p className="mt-4 text-sm font-medium text-foreground">
               Each province has its own dedicated directory — specific
-              salons, specific cities, built for that province only.
+              funeral homes, specific cities, built for that province only.
             </p>
           </div>
-
-          <section
-            aria-label="Canada directory statistics"
-            className="w-full rounded-2xl border border-teal/25 bg-surface p-5 shadow-sm sm:p-6"
-          >
-            <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-xl border border-teal/25 bg-surface-muted p-4 text-center shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-                  Provinces &amp; territories
-                </p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">
-                  {caNationwide.provinceCount.toLocaleString()}
-                </p>
-              </div>
-              <div className="rounded-xl border border-teal/25 bg-surface-muted p-4 text-center shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-                  Verified salons
-                </p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">
-                  {caNationwide.totalFacilities.toLocaleString()}
-                </p>
-              </div>
-              <div className="rounded-xl border border-teal/25 bg-surface-muted p-4 text-center shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-                  Cities covered
-                </p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">
-                  {caNationwide.totalCities.toLocaleString()}
-                </p>
-              </div>
-              <div className="rounded-xl border border-teal/25 bg-surface-muted p-4 text-center shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-                  Average rating
-                </p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">
-                  {caNationwide.averageRating != null
-                    ? `${caNationwide.averageRating}★`
-                    : "—"}
-                </p>
-              </div>
-            </div>
-          </section>
         </div>
       </section>
 

@@ -3,33 +3,33 @@ import Link from "next/link";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Nail Salon Directories",
+  title: "Contact Us | Funeral Home Directories",
   description:
-    "Get in touch with NailSalonDirectories.com. Send a message or email hello@directoriesnetwork.com for questions about our directory or featured listings.",
+    "Get in touch with FuneralDirectories.com. Send a message or email hello@directoriesnetwork.com for questions about our directory or featured listings.",
   alternates: {
     canonical: "/contact",
     languages: {
-      "en-us": "https://nailsalondirectories.com/contact",
+      "en-us": "https://funeraldirectories.com/contact",
     },
   },
   openGraph: {
-    title: "Contact Us | Nail Salon Directories",
+    title: "Contact Us | Funeral Home Directories",
     description:
-      "Contact NailSalonDirectories.com for questions about our directory or featured listings.",
+      "Contact FuneralDirectories.com for questions about our directory or featured listings.",
     url: "/contact",
-    siteName: "NailSalonDirectories.com",
+    siteName: "FuneralDirectories.com",
     type: "website",
   },
 };
 
-const siteUrl = "https://nailsalondirectories.com";
+const siteUrl = "https://funeraldirectories.com";
 
 export default function ContactPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "NailSalonDirectories.com", item: `${siteUrl}/` },
+      { "@type": "ListItem", position: 1, name: "FuneralDirectories.com", item: `${siteUrl}/` },
       { "@type": "ListItem", position: 2, name: "Contact", item: `${siteUrl}/contact` },
     ],
   };

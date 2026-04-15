@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About This Directory | Nail Salon Directories",
+  title: "About This Directory | Funeral Home Directories",
   description:
-    "Learn about NailSalonDirectories.com — a trusted directory helping clients compare nail salons, nail technicians, manicurists, manicures, and pedicures across the US and Canada.",
+    "Learn about FuneralDirectories.com — a trusted directory helping families compare funeral homes, mortuaries, crematories, and memorial chapels across the US and Canada.",
   alternates: {
     canonical: "/about",
     languages: {
-      "en-us": "https://nailsalondirectories.com/about",
+      "en-us": "https://funeraldirectories.com/about",
     },
   },
   openGraph: {
-    title: "About This Directory | Nail Salon Directories",
+    title: "About This Directory | Funeral Home Directories",
     url: "/about",
-    siteName: "NailSalonDirectories.com",
+    siteName: "FuneralDirectories.com",
     type: "website",
   },
 };
@@ -30,19 +30,19 @@ export default function AboutPage() {
           About This Directory
         </h1>
         <p className="max-w-3xl text-sm text-slate-600">
-          NailSalonDirectories.com is a professional, easy-to-use directory that helps clients find and compare nail salons across the United States and Canada.
+          FuneralDirectories.com is a professional, easy-to-use directory that helps families find and compare funeral homes across the United States and Canada.
         </p>
       </header>
 
       <div className="mt-10 max-w-3xl space-y-6 text-sm text-slate-700">
         <p>
-          We list verified salons — so you can explore options by state and city, compare contact details and ratings, and make informed decisions. Our listings are sourced from public information and verified where possible; we encourage you to confirm licenses and credentials with your state or provincial cosmetology board (including nail specialty rules where applicable) and to visit salons in person when possible.
+          We list verified funeral homes — so you can explore options by state and city, compare contact details and ratings, and make informed decisions. Our listings are sourced from public information and verified where possible; we encourage you to confirm licenses and credentials with your state or provincial funeral regulatory authority where applicable and to contact providers directly when planning services.
         </p>
         <p>
-          This site is for informational purposes only. We do not endorse any specific salon. Always verify licensing, inspections, and accreditation with the appropriate regulatory body in your area.
+          This site is for informational purposes only. We do not endorse any specific funeral home. Always verify licensing, inspections, and accreditation with the appropriate regulatory body in your area.
         </p>
         <p>
-          Salon owners can learn about featured and premium listings on our{" "}
+          Funeral home owners can learn about featured and premium listings on our{" "}
           <Link href="/advertise" className="font-medium text-teal hover:text-teal-soft">
             Advertise
           </Link>{" "}

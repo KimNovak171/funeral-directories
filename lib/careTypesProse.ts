@@ -1,23 +1,25 @@
 /**
  * Turn raw Google-style category labels into short, natural phrases for prose
- * (e.g. city page intros). Omits entries that do not look nail-salon-related.
+ * (e.g. city page intros). Omits entries that do not look funeral-home-related.
  */
 
 const EXACT_PHRASE: Record<string, string> = {
-  "nail salon": "nail salons",
-  "nail technician": "nail technicians",
-  manicurist: "manicurists",
-  "nail spa": "nail spas",
-  manicure: "manicures",
-  pedicure: "pedicures",
+  "funeral home": "funeral homes",
+  mortuary: "mortuaries",
+  crematory: "crematories",
+  "memorial chapel": "memorial chapels",
+  cemetery: "cemeteries",
+  cremation: "cremation services",
+  "funeral director": "funeral directors",
+  "memorial park": "memorial parks",
 };
 
-const NAIL_SALON_LIKE =
-  /nail|manicure|pedicure|manicurist|technician|gel\s*nail|acrylic|shellac|dip\s*powder/i;
+const FUNERAL_LIKE =
+  /funeral|mortuary|cremat|cemetery|memorial chapel|burial|interment|obituary|embalm|undertaker|mausoleum|inurnment|wake|visitation|death care/i;
 
-/** Labels that match common noise but are not nail salon services. */
-const NON_SALON =
-  /auto\s+repair|collision|transmission|student\s+dormitory|orthodox\s+church|storage\s+facility|insurance\s+agency|urolog/i;
+/** Labels that match common noise but are not funeral-home categories. */
+const NON_FUNERAL =
+  /nail|manicure|pedicure|beauty salon|hair salon|gel nail|acrylic nail|auto\s+repair|collision|transmission|student\s+dormitory|orthodox\s+church|storage\s+facility|insurance\s+agency|urolog|restaurant|pharmacy/i;
 
 function normalizeKey(raw: string): string {
   return raw.trim().toLowerCase().replace(/\s+/g, " ");
@@ -36,9 +38,6 @@ function humanizeFallback(raw: string): string {
   if (s.endsWith(" center")) {
     return s.replace(/ center$/, " centers");
   }
-  if (s.endsWith("ist") && !/manicurist$/.test(s)) {
-    return `${s}s`;
-  }
   if (!s.endsWith("s")) {
     return `${s}s`;
   }
@@ -48,9 +47,9 @@ function humanizeFallback(raw: string): string {
 function phraseForLabel(raw: string): string | null {
   const key = normalizeKey(raw);
   if (!key) return null;
-  if (NON_SALON.test(key)) return null;
+  if (NON_FUNERAL.test(key)) return null;
   if (EXACT_PHRASE[key]) return EXACT_PHRASE[key];
-  if (!NAIL_SALON_LIKE.test(raw)) return null;
+  if (!FUNERAL_LIKE.test(raw)) return null;
   return humanizeFallback(raw);
 }
 
@@ -79,20 +78,25 @@ export function formatCareTypesClause(
     if (phrases.length >= maxItems) break;
   }
   if (phrases.length === 0) {
-    return "including nail salons, nail technicians, manicurists, manicures, and pedicures";
+    return "including funeral homes, mortuaries, crematories, memorial chapels, and cemeteries";
   }
   return `including ${oxfordJoin(phrases)}`;
 }
 
-/** Schema.org `Thing` entries for primary nail service categories on this directory. */
-export function salonCategorySchemaThings(): { "@type": "Thing"; name: string }[] {
+/** Schema.org-typed entries for primary funeral categories (LocalBusiness / related types). */
+export function funeralCategorySchemaThings(): Array<{
+  "@type": string;
+  name: string;
+}> {
   return [
-    { "@type": "Thing", name: "Nail Salon" },
-    { "@type": "Thing", name: "Nail Technician" },
-    { "@type": "Thing", name: "Manicurist" },
+    { "@type": "FuneralHome", name: "Funeral Home" },
+    { "@type": "FuneralHome", name: "Mortuary" },
+    { "@type": "Crematory", name: "Crematory" },
+    { "@type": "FuneralHome", name: "Memorial Chapel" },
+    { "@type": "Cemetery", name: "Cemetery" },
   ];
 }
 
 /** Default sentence when no care-type stats exist (FAQ answers, etc.). */
-export const DEFAULT_SALON_CARE_TYPES_SENTENCE =
-  "Nail Salon, Nail Technician, Manicurist";
+export const DEFAULT_FUNERAL_CARE_TYPES_SENTENCE =
+  "Funeral Home, Mortuary, Crematory, Memorial Chapel, Cemetery";

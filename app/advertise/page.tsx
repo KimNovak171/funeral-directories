@@ -2,36 +2,36 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Advertise | Get Your Salon in Front of Clients",
+  title: "Advertise | Funeral Home Owners — Featured & Premium Listings",
   description:
-    "Featured and premium listings on NailSalonDirectories.com. Reach clients actively searching for nail salons, nail technicians, manicures, and pedicures across the United States.",
+    "Featured and premium listings for funeral home owners on FuneralDirectories.com. Reach families searching for funeral homes, mortuaries, and cremation providers across the United States.",
   alternates: {
     canonical: "/advertise",
     languages: {
-      "en-us": "https://nailsalondirectories.com/advertise",
+      "en-us": "https://funeraldirectories.com/advertise",
     },
   },
   openGraph: {
-    title: "Advertise | Get Your Salon in Front of Clients",
+    title: "Advertise | Funeral Home Owners — Featured & Premium Listings",
     description:
-      "A featured listing puts your salon at the top of your city directory section and in front of high-intent visitors at the moment they are choosing a nail salon or nail technician.",
+      "Promote your funeral home to families comparing local funeral, cremation, and memorial providers. Featured and premium city and homepage placement.",
     url: "/advertise",
-    siteName: "NailSalonDirectories.com",
+    siteName: "FuneralDirectories.com",
     type: "website",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "NailSalonDirectories.com advertise page preview",
+        alt: "FuneralDirectories.com advertise page preview",
       },
     ],
   },
 };
 
-const siteUrl = "https://nailsalondirectories.com";
-const STRIPE_LINK_49 = "https://buy.stripe.com/cNi4gzfiG9LNfoycTLfAc0A";
-const STRIPE_LINK_99 = "https://buy.stripe.com/5kQ7sL2vU7DF0tE06ZfAc0B";
+const siteUrl = "https://funeraldirectories.com";
+const STRIPE_LINK_49 = "https://buy.stripe.com/bJedR98Ui5vxdgq9HzfAc0K";
+const STRIPE_LINK_99 = "https://buy.stripe.com/aFaaEXgmK5vx4JU8DvfAc0L";
 
 export default function AdvertisePage() {
   const breadcrumbSchema = {
@@ -41,7 +41,7 @@ export default function AdvertisePage() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "NailSalonDirectories.com",
+        name: "FuneralDirectories.com",
         item: `${siteUrl}/`,
       },
       {
@@ -62,16 +62,16 @@ export default function AdvertisePage() {
 
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal">
-          For Salon Owners
+          For funeral home owners &amp; operators
         </p>
         <h1 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Get Your Salon in Front of Clients Who Are Ready to Book
+          Promote Your Funeral Home to Families Comparing Local Providers
         </h1>
         <p className="max-w-3xl text-sm text-slate-600">
-          NailSalonDirectories.com is visited by clients actively searching for
-          nail salons and manicure and pedicure services across the United States. A featured listing puts
-          your salon at the top of your city directory section and in front of
-          high-intent visitors at the moment they are choosing a nail salon or nail technician.
+          If you own or manage a funeral home, mortuary, or cremation provider, FuneralDirectories.com
+          is a funeral-home-only directory: your listing appears alongside other funeral professionals
+          when families search by state and city. Featured and premium placements put your funeral home
+          in front of visitors who are actively comparing local funeral, cremation, and memorial providers.
         </p>
       </header>
 
@@ -101,9 +101,9 @@ export default function AdvertisePage() {
           </h2>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-600">
             <li>Everything in Featured</li>
-            <li>Included in the Featured Salons section on the homepage</li>
-            <li>Your salon logo or photo displayed</li>
-            <li>Custom tagline (up to 60 words)</li>
+            <li>Included in the Featured Funeral Homes section on the homepage</li>
+            <li>Your funeral home logo or photo displayed</li>
+            <li>Custom tagline (up to 25 words)</li>
             <li>Cancel anytime</li>
           </ul>
           <a
