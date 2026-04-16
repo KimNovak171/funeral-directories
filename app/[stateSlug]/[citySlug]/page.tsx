@@ -7,10 +7,12 @@ import {
 } from "@/lib/careTypesProse";
 import {
   getCityFacilities,
-  getDirectoryIndex,
   getHreflangForRegionSlug,
   getOtherCitiesInState,
 } from "@/lib/stateFacilities";
+
+export const dynamic = "force-static";
+export const revalidate = false;
 
 const siteUrl = "https://funeraldirectories.com";
 
@@ -62,14 +64,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const directory = await getDirectoryIndex();
-  const params = directory.flatMap((state) =>
-    state.cities.map((city) => ({
-      stateSlug: state.stateSlug,
-      citySlug: city.citySlug,
-    })),
-  );
-  return params.filter(({ stateSlug, citySlug }) => stateSlug && citySlug);
+  return [];
 }
 
 export default async function CityPage({ params }: CityPageProps) {

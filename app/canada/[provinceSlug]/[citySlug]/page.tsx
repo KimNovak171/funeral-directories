@@ -3,13 +3,15 @@ import Link from "next/link";
 import { FacilityCard } from "@/components/FacilityCard";
 import {
   getCanadaCityFacilities,
-  getCanadaDirectoryIndex,
   getOtherCitiesInProvince,
 } from "@/lib/canadaFacilities";
 import {
   DEFAULT_FUNERAL_CARE_TYPES_SENTENCE,
   funeralCategorySchemaThings,
 } from "@/lib/careTypesProse";
+
+export const dynamic = "force-static";
+export const revalidate = false;
 
 const siteUrl = "https://funeraldirectories.com";
 
@@ -56,13 +58,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const directory = await getCanadaDirectoryIndex();
-  return directory.flatMap((province) =>
-    province.cities.map((city) => ({
-      provinceSlug: province.provinceSlug,
-      citySlug: city.citySlug,
-    })),
-  );
+  return [];
 }
 
 export default async function CanadaCityPage({ params }: CanadaCityPageProps) {
