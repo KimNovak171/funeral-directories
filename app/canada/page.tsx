@@ -38,6 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function CanadaLandingPage() {
   const directory = await getCanadaDirectoryIndex();
+  const stats = getCanadaNationwideStats();
 
   return (
     <div className="bg-surface-muted text-foreground">
@@ -55,6 +56,45 @@ export default async function CanadaLandingPage() {
               Every listing rated 3★ or higher on Google Maps.
             </p>
           </div>
+
+          <section className="w-full rounded-2xl border-2 border-teal/30 bg-teal/10 p-6 shadow-sm">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Verified funeral homes
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">
+                  {stats.totalFacilities.toLocaleString()}
+                </p>
+              </div>
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Provinces and territories
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">
+                  {stats.provinceCount.toLocaleString()}
+                </p>
+              </div>
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Cities covered
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">
+                  {stats.totalCities.toLocaleString()}
+                </p>
+              </div>
+              <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Average rating
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-navy">
+                  {stats.averageRating != null
+                    ? `${stats.averageRating}★`
+                    : "—"}
+                </p>
+              </div>
+            </div>
+          </section>
 
           <div className="w-full rounded-2xl border-2 border-teal/40 bg-surface p-6 shadow-xl shadow-navy/20 ring-1 ring-teal/30">
             <h2 className="text-xl font-semibold text-foreground">

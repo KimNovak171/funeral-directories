@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FacilityCard } from "@/components/FacilityCard";
-import { getCanadaDirectoryIndex } from "@/lib/canadaFacilities";
+import {
+  getCanadaDirectoryIndex,
+  getCanadaNationwideStats,
+} from "@/lib/canadaFacilities";
 import { getDirectoryIndex, getStateSummary, getGlobalStats } from "@/lib/stateFacilities";
 
 export const metadata: Metadata = {
@@ -43,6 +46,7 @@ export default async function Home() {
     usDirectory.map((s) => getStateSummary(s.stateSlug)),
   );
   const globalStats = getGlobalStats();
+  const canadaNationwideStats = getCanadaNationwideStats();
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -114,6 +118,20 @@ export default async function Home() {
                 <p className="mt-2 text-2xl font-semibold text-navy">3★ Minimum</p>
               </div>
             </div>
+            <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-slate-600">
+              Canada adds{" "}
+              <span className="font-semibold text-navy">
+                {canadaNationwideStats.totalFacilities.toLocaleString()}
+              </span>{" "}
+              verified listings across{" "}
+              {canadaNationwideStats.provinceCount.toLocaleString()}{" "}
+              provinces and territories and{" "}
+              {canadaNationwideStats.totalCities.toLocaleString()} cities
+              {canadaNationwideStats.averageRating != null
+                ? ` (avg ${canadaNationwideStats.averageRating}★)`
+                : ""}
+              .
+            </p>
           </section>
 
           <div className="w-full rounded-2xl border-2 border-gold/40 bg-navy-soft/95 p-6 shadow-xl shadow-navy/20 ring-1 ring-gold/30">
@@ -157,7 +175,14 @@ export default async function Home() {
         </h2>
         <p className="mt-2 text-sm text-slate-600">
           Browse verified funeral homes by Canadian province. Same
-          directory experience — province by province, then by city.
+          directory experience — province by province, then by city.{" "}
+          <span className="font-medium text-navy">
+            {canadaNationwideStats.totalFacilities.toLocaleString()} listings
+          </span>{" "}
+          across{" "}
+          {canadaNationwideStats.provinceCount.toLocaleString()} jurisdictions
+          and{" "}
+          {canadaNationwideStats.totalCities.toLocaleString()} cities.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {canadaDirectory.map((item) => (
